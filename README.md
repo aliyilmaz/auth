@@ -10,8 +10,13 @@ Basit üyelik sistemi ihtiyacını karşılamak için oluşturulmuş bu proje, b
 
 
 #### Kullanım
-* Kurulum: Proje yolu/install
-* Giriş: Proje yolu/login
-* Kayıt: Proje yolu/register
-* Çıkış: Proje yolu/logout
-* Panel: Proje yolu/dashboard
+* Kurulum işlemi için rota: 
+`Proje yolu/install`
+* Giriş formu için rota: 
+`Proje yolu/login`
+* Kayıt formu için rota: 
+`Proje yolu/register`
+* Çıkış işlemi için rota: 
+`Proje yolu/logout`
+* Panel için rota: 
+`Proje yolu/dashboard`
