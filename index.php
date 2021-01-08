@@ -15,4 +15,5 @@ $Mind->route('/', 'app/views/welcome');
 $Mind->route('install', 'app/migration/install');
 $Mind->route('register', 'app/views/register');
 $Mind->route('login', 'app/views/login');
+$Mind->route('logout', 'app/request/logout');
 $Mind->route('dashboard', 'app/views/dashboard');
