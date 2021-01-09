@@ -23,12 +23,17 @@ if(!empty($this->post)){
     if($this->validate($rule, $this->post, $message)){
 
         $this->post['password'] = md5($this->post['password']);
-        
+
         $user = $this->theodore('users', $this->post);
         if(!empty($user)){
-            $_SESSION['username'] = $user['username'];
-            echo 'Oturum açılıyor. <h5 id="redirect-time"></h5>';
-            $this->redirect('dashboard', 10, 'h5#redirect-time');
+
+            if($user['status']){
+                $_SESSION['username'] = $user['username'];
+                echo 'Oturum açılıyor. <h5 id="redirect-time"></h5>';
+                $this->redirect('dashboard', 10, 'h5#redirect-time');
+            } else {
+                echo 'Hesabınız dondurulmuştur.';
+            }
         } else {
             echo 'Bu isimde bir kullanıcı bulunmamaktadır.';
         }
