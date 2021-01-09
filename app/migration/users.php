@@ -4,9 +4,10 @@
 /*                                    USERS                                   */
 /* -------------------------------------------------------------------------- */
 $scheme = array(
-    'id:increment',
+    'id:increments',
     'username',
     'password',
+    'status',
     'created_at',
     'updated_at'
 );
