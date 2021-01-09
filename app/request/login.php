@@ -11,7 +11,7 @@ if(!empty($this->post)){
     // Message
     $message = array(
         'username'=>  array(
-            'required'=>'Boş bırakılmamalıdır.'
+            'required'=>'Kullanıcı adı belirtilmelidir.'
         ),        
         'password'=>  array(
             'required'=>'Parola belirtmeniz gerekmektedir.',
@@ -28,7 +28,7 @@ if(!empty($this->post)){
             echo 'Oturum açılıyor. <h5 id="redirect-time"></h5>';
             $this->redirect('dashboard', 10, 'h5#redirect-time');
         } else {
-            echo 'Giriş işleminiz başarısızlıkla sonuçlandı.';
+            echo 'Bu isimde bir kullanıcı bulunmamaktadır.';
         }
     } 
 }
