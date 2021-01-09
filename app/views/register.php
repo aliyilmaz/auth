@@ -1,7 +1,7 @@
 <h1>Kayıt</h1>
 <form id="register-form">
 <input type="text" name="username" placeholder="Username">
-<input type="password" name="password" placeholder="Password">
+<input type="password" name="password" placeholder="Password" maxlength="10">
 <button type="button" id="register-button">KAYIT OL</button>
 <h4 class="status"></h4>
 </form>
