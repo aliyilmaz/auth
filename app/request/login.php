@@ -22,6 +22,8 @@ if(!empty($this->post)){
 
     if($this->validate($rule, $this->post, $message)){
 
+        $this->post['password'] = md5($this->post['password']);
+        
         $user = $this->theodore('users', $this->post);
         if(!empty($user)){
             $_SESSION['username'] = $user['username'];
