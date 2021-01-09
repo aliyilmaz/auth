@@ -22,6 +22,10 @@ if(!empty($this->post)){
     );
 
     if($this->validate($rule, $this->post, $message)){
+        
+        $this->post['status'] = 1;
+        $this->post['created_at'] = $this->timestamp;
+        
         if($this->insert('users', $this->post)){
             echo 'Kayıt olduğunuz için teşekkür ederiz.';
         } else {
