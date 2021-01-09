@@ -32,7 +32,7 @@ if(!empty($this->post)){
                 echo 'Oturum açılıyor. <h5 id="redirect-time"></h5>';
                 $this->redirect('dashboard', 10, 'h5#redirect-time');
             } else {
-                echo 'Hesabınız dondurulmuştur.';
+                echo 'Hesabınız dondurulduğu için oturum açmanıza izin veremeyiz.';
             }
         } else {
             echo 'Bu isimde bir kullanıcı bulunmamaktadır.';
