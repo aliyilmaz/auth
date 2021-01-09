@@ -11,7 +11,7 @@ if(!empty($this->post)){
     // Message
     $message = array(
         'username'=>  array(
-            'required'=>'Kullanıcı adı belirtilmelidir.'
+            'required'=>'Kullanıcı adı belirtmeniz gerekmektedir.'
         ),        
         'password'=>  array(
             'required'=>'Parola belirtmeniz gerekmektedir.',
