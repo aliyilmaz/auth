@@ -9,8 +9,10 @@ if(!$this->is_db($this->dbname)){
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                USERS CREATE                                */
+/*                                TABLE CREATE                                */
 /* -------------------------------------------------------------------------- */
-$this->mindLoad('app/migration/users');
+$this->mindLoad(array(
+    'app/migration/users'
+));
 
 ?>
