@@ -23,11 +23,14 @@ $message = array(
 
 if($this->validate($rule, $this->post, $message)){
     
-    $this->post['password'] = md5($this->post['password']);
-    $this->post['status'] = 1;
-    $this->post['created_at'] = $this->timestamp;
+    $values = array(
+        'username'=>$this->post['username'],
+        'password'=>md5($this->post['password']),
+        'status'=>1,
+        'created_at'=>$this->timestamp
+    );
 
-    if($this->insert('users', $this->post)){
+    if($this->insert('users', $values)){
         $response = array(
             'status' => 'success',
             'messages' => 'Kayıt olduğunuz için teşekkür ederiz.'
