@@ -6,12 +6,10 @@ Basit üyelik sistemi ihtiyacını karşılamak için oluşturulmuş bu proje, b
 
 1) Projeyi indirip sunucunuza çıkarın
 2) index.php dosyasındaki veritabanı bilgilerini güncelleyin
-3) Sunucuya çıkardığınız proje yolunu, adres satırına yazın ve sonuna install ekleyerek çalıştırın. (Örn: example.com/auth/install ya da example.com/install gibi.)
+3) Sunucuya çıkardığınız proje yolunu, adres satırına yazarak kurulumun otomatik gerçekleşmesini sağlayın. (Örn: example.com/auth/ ya da example.com/ gibi.)
 
 
 #### Kullanım
-* Kurulum işlemi için rota: 
-`Proje yolu/install`
 * Giriş formu için rota: 
 `Proje yolu/login`
 * Kayıt formu için rota: 
