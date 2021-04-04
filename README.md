@@ -10,11 +10,12 @@ Basit üyelik sistemi ihtiyacını karşılamak için oluşturulmuş bu proje, b
 
 
 #### Kullanım
-* Giriş formu için rota: 
-`Proje yolu/login`
-* Kayıt formu için rota: 
-`Proje yolu/register`
-* Çıkış işlemi için rota: 
-`Proje yolu/logout`
-* Panel için rota: 
-`Proje yolu/dashboard`
+* Giriş formu için rota: `Proje yolu/login` 
+* Kayıt formu için rota: `Proje yolu/register`
+* Çıkış işlemi için rota: `Proje yolu/logout`
+* Panel için rota: `Proje yolu/dashboard`
+
+**Not:** Varsayılan giriş bilgileri aşğıdaki gibidir.
+
+Kullanıcı adı: **aliyilmaz** 
+Parola: **123456**
