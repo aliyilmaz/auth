@@ -5,7 +5,6 @@
 /* -------------------------------------------------------------------------- */
 if(!$this->is_db($this->dbname)){
     $this->dbCreate($this->dbname);
-    $this->redirect($this->page_current);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -14,5 +13,4 @@ if(!$this->is_db($this->dbname)){
 $this->mindLoad(array(
     'app/migration/users'
 ));
-
 ?>
