@@ -24,7 +24,7 @@ if(!$this->is_table('users')){
         'status'=>1,
         'created_at'=>$this->timestamp
     );
-    $this->insert('users', $info)
+    $this->insert('users', $info);
     
     /* -------------------------------------------------------------------------- */
     /*                             LOGIN PAGE REDIRECT                            */
