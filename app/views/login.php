@@ -1,3 +1,4 @@
+<?=$this->mindLoad('app/middleware/is_login');?>
 <base href="<?=$this->base_url;?>">
 <h1>Giriş</h1>
 <form id="login-form">
