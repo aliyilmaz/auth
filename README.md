@@ -15,7 +15,7 @@ Basit üyelik sistemi ihtiyacını karşılamak için oluşturulmuş bu proje, b
 * Çıkış işlemi için rota: `Proje yolu/logout`
 * Panel için rota: `Proje yolu/dashboard`
 
-**Not:** Varsayılan giriş bilgileri aşğıdaki gibidir.
+**Not:** Varsayılan giriş bilgileri aşağıdaki gibidir.
 
 Kullanıcı adı: **aliyilmaz** 
 Parola: **123456**
