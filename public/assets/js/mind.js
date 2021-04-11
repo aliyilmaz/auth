@@ -129,17 +129,27 @@ function copyItem(element, where) {
 
         elements.forEach(function (element) {
             
-            // for select start
-            let x = element.querySelectorAll('select');
-            x.forEach(function (y) {
-                let z = y.querySelectorAll('option');
+           // for select start
+            if (element.tagName === 'SELECT') {
+                let z = element.querySelectorAll('option');
                 z.forEach(function (f) {
                     if (f.selected) {
                         f.setAttribute('selected', true);
                     } 
                 });
-            });
+            } else {
+                let x = element.querySelectorAll('select');
+                x.forEach(function (y) {
+                    let z = y.querySelectorAll('option');
+                    z.forEach(function (f) {
+                        if (f.selected) {
+                            f.setAttribute('selected', true);
+                        } 
+                    });
+                });
+            }
             // for select end
+            
             
 
             if (wheres.length >= 1) {
