@@ -150,8 +150,6 @@ function copyItem(element, where) {
             }
             // for select end
             
-            
-
             if (wheres.length >= 1) {
                 wheres.forEach(function (where) {
                     where.appendChild(element.cloneNode(true));
