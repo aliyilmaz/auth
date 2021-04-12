@@ -1,7 +1,7 @@
 /**
  *
  * @package    mind.js
- * @version    Release: 1.1.6
+ * @version    Release: 1.1.7
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Javascript Framework, Basic web development kit.
@@ -17,7 +17,9 @@
             
             let coordinates = position.coords.latitude+','+position.coords.longitude;
             
-            changeContent(element, coordinates);
+            if (element !== '') {
+                changeContent(element, coordinates);
+            }
 
             if(callback) callback(position);
         });
