@@ -1,7 +1,7 @@
 /**
  *
  * @package    mind.js
- * @version    Release: 1.1.5
+ * @version    Release: 1.1.6
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Javascript Framework, Basic web development kit.
@@ -135,7 +135,9 @@ function copyItem(element, where) {
                 z.forEach(function (f) {
                     if (f.selected) {
                         f.setAttribute('selected', true);
-                    } 
+                    } else {
+                        f.removeAttribute('selected');
+                    }
                 });
             } else {
                 let x = element.querySelectorAll('select');
@@ -144,7 +146,9 @@ function copyItem(element, where) {
                     z.forEach(function (f) {
                         if (f.selected) {
                             f.setAttribute('selected', true);
-                        } 
+                        } else {
+                            f.removeAttribute('selected');
+                        }
                     });
                 });
             }
