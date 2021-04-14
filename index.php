@@ -11,7 +11,7 @@ $conf = array(
 
 $Mind = new Mind($conf);
 
-$Mind->route('/', 'app/views/welcome', 'app/migration/install');
+$Mind->route('/', 'app/views/index', 'app/migration/install');
 $Mind->route('register', 'app/views/register');
 $Mind->route('login', 'app/views/login');
 $Mind->route('logout', 'app/request/logout');
