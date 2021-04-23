@@ -1,7 +1,7 @@
 /**
  *
  * @package    mind.js
- * @version    Release: 1.1.7
+ * @version    Release: 1.2.0
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Javascript Framework, Basic web development kit.
@@ -93,6 +93,58 @@ function listening(callback, delay = 0.1) {
     window.setInterval(function(){
         if(callback) callback(callback);
     }, delay);
+}
+
+function generateToken(limit=100) {
+    var s = '';
+    var randomchar = function() {
+      var n = Math.floor(Math.random() * 62);
+      if (n < 10) return n; //1-10
+      if (n < 36) return String.fromCharCode(n + 55); //A-Z
+      return String.fromCharCode(n + 61); //a-z
+    }
+    while (s.length < limit) s += randomchar();
+    return s;
+}
+
+function inverse(data) {
+    
+    let revrs;
+
+    if (is_string(data)) {
+        revrs = data.split("").reverse().join("");
+    }
+    
+    if(is_array(data)) {
+        revrs = data.reverse();
+    }
+
+    if (is_object(data)) {
+        new_obj= {}
+        rev_obj = Object.keys(data).reverse();
+        rev_obj.forEach(function(i) { 
+            new_obj[i] = data[i];
+        })
+        return new_obj;
+    }
+
+    return revrs;
+}
+
+function getContent(element) {
+    let content = '',
+        elements = document.querySelectorAll(element);
+    if (elements.length === 1) {
+        elements.forEach(function (element) {
+            if(element.value === undefined){
+                content = element.innerHTML;
+            } else {
+                content = element.value;
+            }
+        });
+    }
+   
+    return content;
 }
 
 function appendItem(element, value){
@@ -295,6 +347,14 @@ function foreachArray(object, callback){
         console.log('Only arrays, objects and json can be processed.');
     }
 
+}
+
+function is_function(funcName) {
+    return !!(funcName && funcName.call && funcName.apply);
+}
+ 
+function is_string(str) {
+    return typeof str === 'string' || str instanceof String;
 }
 
 function is_array(obj){
