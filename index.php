@@ -6,7 +6,10 @@ $conf = array(
     'host'      =>  'localhost',
     'dbname'    =>  'auth',
     'username'  =>  'root',
-    'password'  =>  ''
+    'password'  =>  '',
+    'firewall' => array(
+        'csrf'  => false
+    )
 );
 
 $Mind = new Mind($conf);
