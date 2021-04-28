@@ -5,8 +5,10 @@
 <input type="text" name="username" placeholder="Username">
 <input type="password" name="password" placeholder="Password" maxlength="10">
 <button type="button" id="login-button">GİRİŞ YAP</button>
-<strong class="status"></strong> <strong class="redirect-time"></strong>
+<strong class="status"></strong> 
 <div class="messages"></div>
+<br><strong class="redirect-time"></strong>
+<?=$this->csrf_token();?>
 </form>
 
 <script src="public/assets/js/mind.js"></script>
@@ -29,6 +31,8 @@
                 case 'error':
                     showItem('div.messages');
                     changeContent('div.messages', '');
+                    itemSetAttr('button#login-button', 'disabled', 'disabled');
+                    redirect('login', 3, 'strong.redirect-time');
                     if(is_object(requestMessages)){
                         foreachArray(requestMessages, (name, values)=>{
                             foreachArray(values, (rule, value)=>{
