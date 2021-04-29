@@ -24,6 +24,7 @@
                 case 'success':
                     showItem('strong.status');
                     changeContent('strong.status', '<br><br>'+requestMessages);
+                    itemSetAttr('button#login-button', 'disabled', 'disabled');
                     redirect('dashboard', 3, 'strong.redirect-time');
                     formReset('form');
                     changeContent('div.messages', '');
