@@ -2797,6 +2797,8 @@ class Mind extends PDO
 
     /**
      * CSRF input
+     * 
+     * @return string
      */
     public function csrf_token(){
         if(isset($_SESSION['csrf']['name']) AND isset($_SESSION['csrf']['token'])){
