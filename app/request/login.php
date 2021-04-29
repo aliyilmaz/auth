@@ -28,7 +28,7 @@ if($this->validate($rule, $this->post, $message)){
     if(!empty($user)){
 
         if($user['status']){
-            $_SESSION['user']['username'] = $user['username'];
+            $_SESSION['username'] = $user['username'];
             $response = array(
                 'status'=>'success',
                 'messages'=>'Oturum açılıyor.'
@@ -42,7 +42,7 @@ if($this->validate($rule, $this->post, $message)){
     } else {
         $response = array(
             'status'=>'error',
-            'messages'=>'Bu isimde bir kullanıcı bulunmamaktadır.'
+            'messages'=>'Bu bilgilere sahip bir kullanıcı bulunmamaktadır.'
         );
     }
 } else {

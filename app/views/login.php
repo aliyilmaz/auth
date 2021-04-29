@@ -8,7 +8,6 @@
 <strong class="status"></strong> 
 <div class="messages"></div>
 <br><strong class="redirect-time"></strong>
-<?=$this->csrf_token();?>
 </form>
 
 <script src="public/assets/js/mind.js"></script>
@@ -24,7 +23,6 @@
                 case 'success':
                     showItem('strong.status');
                     changeContent('strong.status', '<br><br>'+requestMessages);
-                    itemSetAttr('button#login-button', 'disabled', 'disabled');
                     redirect('dashboard', 3, 'strong.redirect-time');
                     formReset('form');
                     changeContent('div.messages', '');
@@ -32,8 +30,6 @@
                 case 'error':
                     showItem('div.messages');
                     changeContent('div.messages', '');
-                    itemSetAttr('button#login-button', 'disabled', 'disabled');
-                    redirect('login', 3, 'strong.redirect-time');
                     if(is_object(requestMessages)){
                         foreachArray(requestMessages, (name, values)=>{
                             foreachArray(values, (rule, value)=>{
