@@ -28,7 +28,7 @@ if($this->validate($rule, $this->post, $message)){
     if(!empty($user)){
 
         if($user['status']){
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['user']['username'] = $user['username'];
             $response = array(
                 'status'=>'success',
                 'messages'=>'Oturum açılıyor.'

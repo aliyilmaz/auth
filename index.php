@@ -19,4 +19,3 @@ $Mind->route('dashboard', 'app/views/dashboard');
 
 $Mind->route('api/register', 'app/request/register');
 $Mind->route('api/login', 'app/request/login');
-
