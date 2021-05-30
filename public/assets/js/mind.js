@@ -1,7 +1,7 @@
 /**
  *
  * @package    mind.js
- * @version    Release: 1.2.0
+ * @version    Release: 1.2.5
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Javascript Framework, Basic web development kit.
@@ -224,6 +224,13 @@ function itemSetAttr(element, name, value){
     };
 }
 
+function itemRemoveAttr(element, name){
+    let elements = document.querySelectorAll(element);
+    for(var i = 0; i<elements.length; i++){
+        elements[i].removeAttribute(name);
+    };
+}
+
 function hideItem(element, callback){
     let elements = document.querySelectorAll(element);
     for(var i = 0; i<elements.length; i++){
@@ -258,6 +265,14 @@ function removeItem(element, callback){
         }
     
     };
+}
+
+function elementRuler(element){
+    let elements = document.querySelectorAll(element);
+    if(elements.length === 1){
+        return elements[0].naturalWidth+'x'+elements[0].naturalHeight;
+    }
+    console.log('Specify only one element.');
 }
 
 function clickItem(element, callback){
@@ -349,6 +364,199 @@ function foreachArray(object, callback){
 
 }
 
+function eventCapture(event, callback){
+    events = ['abort', 'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload', 'blur', 'canplay', 'canplaythrough', 'change', 'click', 'cut', 'dblclick', 'drag', 'dragend', 'dragenter', 'dragstart', 'drop', 'durationchange', 'ended', 'error', 'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid', 'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'offline', 'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange', 'resize', 'reset', 'scroll', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit', 'suspend', 'timeupdate', 'toogle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend', 'unload', 'volumechange', 'waiting', 'wheel'];
+    if(in_array(event, events)){
+        document.addEventListener(event, callback, true);
+    }
+}
+
+function fullScreen(element=null){
+
+    if(element !== null){
+        if(document.fullscreenElement === null){
+            let elements = document.querySelectorAll(element);
+            for (var i = 0; i < elements.length; i++){
+                if (elements[i].requestFullscreen) {
+                    elements[i].requestFullscreen();
+                } else if (elements[i].webkitRequestFullscreen) { /* Safari */
+                    elements[i].webkitRequestFullscreen();
+                } else if (elements[i].msRequestFullscreen) { /* IE11 */
+                    elements[i].msRequestFullscreen();
+                }
+                
+            };
+        } 
+    } 
+    
+    if(document.fullscreenElement !== null){
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+        }
+    }
+    
+}
+
+function imageInsert(element, options){
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                     INPUT & OUTPUT ELEMENT REQUIREMENTS                    */
+    /* -------------------------------------------------------------------------- */
+    if(!isset(options.input) || !isset(options.output)){
+        return false;
+    }
+    changeContent(options.output, '');
+    
+    /* -------------------------------------------------------------------------- */
+    /*                           SUCCESS ELEMENT CONTROL                          */
+    /* -------------------------------------------------------------------------- */
+    if(isset(options.success)){
+        try {
+            changeContent(options.success.element, '');
+        } catch (error) {
+            options.success.element = undefined;
+        }
+    }
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                                    ERROR                                   */
+    /* -------------------------------------------------------------------------- */
+    
+    if(isset(options.error)){
+        try {
+            changeContent(options.error.total.element, '');
+            changeContent(options.error.type.element, '');
+            changeContent(options.error.byte.element, '');
+        } catch (error) {
+            options.error.total = undefined;
+            options.error.type = undefined;
+            options.error.byte = undefined;
+        }
+    } else {
+        options.error = {};
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                                    RULE                                    */
+    /* -------------------------------------------------------------------------- */
+    if(isset(options.rule)){
+
+        if(isset(options.rule.total)){
+            if(options.rule.total<element.files.length){
+                if(isset(options.error.total)){
+                    changeContent(options.error.total.element, options.error.total.message);
+                }
+                changeContent(options.input, '');
+                return false;
+            }
+        }
+
+        for (let index = 0; index < element.files.length; index++) {
+
+            if(isset(options.rule.type)){
+                if(!in_array(element.files[index].type, options.rule.type)){
+                    if(isset(options.error.type)){
+                        changeContent(options.error.type.element, options.error.type.message);
+                    }
+                    changeContent(options.input, '');
+                    return false;
+                }
+            }
+
+            if(isset(options.rule.byte)){
+                if(element.files[index].size>options.rule.byte){
+                    if(isset(options.error.type)){
+                        changeContent(options.error.byte.element, options.error.byte.message);
+                    }
+                    changeContent(options.input, '');
+                    return false;
+                }
+            }
+
+        }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   INSERT                                   */
+    /* -------------------------------------------------------------------------- */    
+    for (let index = 0; index < element.files.length; index++) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            
+            appendItem(options.output, '<img src="'+e.target.result+'">');
+            
+            /* -------------------------------------------------------------------------- */
+            /*                            ELEMENT ATTR CONTROL                            */
+            /* -------------------------------------------------------------------------- */
+            if(isset(options.elementAttr)){
+                for (let attrIndex = 0; attrIndex < options.elementAttr.length; attrIndex++) {
+                    itemSetAttr('img', options.elementAttr[attrIndex].name, options.elementAttr[attrIndex].value);
+                }
+            }
+        }
+        reader.readAsDataURL(element.files[index]);
+    }        
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   SUCCESS                                  */
+    /* -------------------------------------------------------------------------- */
+    if(isset(options.success)){
+        if(isset(options.success.element) && isset(options.success.message)){
+            changeContent(options.success.element, options.success.message);
+        }
+    }
+
+}
+
+function toggleEdit(element){
+    let items = document.querySelectorAll(element);
+    for (var i = 0; i < items.length; i++){
+        items[i].addEventListener('mousedown', (event)=>{
+            event.target.setAttribute('contenteditable', true);
+        });
+        items[i].addEventListener('blur', (event)=>{
+            event.target.setAttribute('contenteditable', false);
+        });
+    }; 
+}
+
+function selectionText(element, callback){
+    let items = document.querySelectorAll(element);
+    for (var i = 0; i < items.length; i++){
+        items[i].addEventListener('mouseup', ()=>{
+            const selection = window.getSelection().toString();
+            if(selection != ""){
+                if (callback) callback(selection);
+            }
+        });
+        items[i].addEventListener('blur', ()=>{
+            if (callback) callback("");
+        });
+    }; 
+}
+
+function isset(str){
+    if(str === undefined){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function in_array(needle, haystack){
+    if(haystack.indexOf(needle) != -1){  
+        return true;
+    } else {
+        return false;
+    }
+
+}
 function is_function(funcName) {
     return !!(funcName && funcName.call && funcName.apply);
 }
