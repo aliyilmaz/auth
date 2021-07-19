@@ -3,7 +3,7 @@
 /**
  *
  * @package    Mind
- * @version    Release: 4.6.0
+ * @version    Release: 4.6.1
  * @license    GPL3
  * @author     Ali YILMAZ <aliyilmaz.work@gmail.com>
  * @category   Php Framework, Design pattern builder for PHP.
@@ -1888,16 +1888,23 @@ class Mind extends PDO
      * @return bool
      * 
      */
-    public function is_age($date, $age){
+    public function is_age($date, $age, $type='min'){
         
         $today = date("Y-m-d");
         $diff = date_diff(date_create($date), date_create($today));
-
-        if($age >= $diff->format('%y')){
-            return true;
-        } else {
-            return false;
+    
+        if($type === 'max'){
+            if($age >= $diff->format('%y')){
+                return true;
+            }
         }
+        if($type === 'min'){
+            if($age <= $diff->format('%y')){
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     /**
@@ -2312,13 +2319,13 @@ class Mind extends PDO
                     break;
                     // Minumum yaş sınırlaması kuralı 
                     case 'min-age':
-                        if(!is_numeric($extra) OR !$this->is_date($data[$column], 'Y-m-d')){
+                        if(!$this->is_age($data[$column], $extra)){
                             $this->errors[$column][$name] = $message[$column][$name];
                         }
                     break;
                     // Maksimum yaş sınırlaması kuralı 
                     case 'max-age':
-                        if(!is_numeric($extra) OR !$this->is_date($data[$column], 'Y-m-d')){
+                        if(!$this->is_age($data[$column], $extra, 'max')){
                             $this->errors[$column][$name] = $message[$column][$name];
                         }
                     break;
